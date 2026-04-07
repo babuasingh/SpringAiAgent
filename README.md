@@ -1,6 +1,6 @@
 # SpringAiAgent
 
-A Spring Boot application that provides an AI-powered coding assistant via REST API, integrated with Ollama for language models. This agent can assist with coding tasks, file operations, and command execution through conversational interfaces.
+A Spring Boot application that provides a command line interactive AI-powered coding assistant, integrated with Ollama for language models. This agent can assist with coding tasks, file operations, and command execution through conversational interfaces. For this project, I used the qwen3.5:397b-cloud model in Ollama.
 
 ## Features
 
@@ -22,7 +22,7 @@ A Spring Boot application that provides an AI-powered coding assistant via REST 
 
 - Java 21 or higher
 - Maven 3.6+
-- Ollama installed and running (with a compatible model, e.g., llama2)
+- Ollama installed and running (with the qwen3.5:397b-cloud model)
 
 ## Installation and Setup
 
@@ -37,9 +37,9 @@ A Spring Boot application that provides an AI-powered coding assistant via REST 
    ollama serve
    ```
 
-3. Pull a model (if not already done):
+3. Pull the model:
    ```bash
-   ollama pull llama2
+   ollama pull qwen3.5:397b-cloud
    ```
 
 4. Build and run the application:
@@ -50,36 +50,6 @@ A Spring Boot application that provides an AI-powered coding assistant via REST 
 
 The application will start on `http://localhost:8080`.
 
-## API Endpoints
-
-### Chat Endpoints
-- `POST /api/agent/chat` - Interactive chat with session persistence
-  - Body: `{"message": "Your query", "sessionId": "optional-session-id"}`
-- `POST /api/agent/chat/simple` - Simple chat without session persistence
-  - Body: `{"message": "Your query"}`
-
-### Utility Endpoints
-- `GET /api/agent/health` - Health check
-- `DELETE /api/agent/session/{sessionId}` - Delete a chat session
-
-### Basic Endpoint
-- `GET /hello` - Returns "Hello World!"
-
-## Usage
-
-Send POST requests to the chat endpoints with your coding queries. The AI agent has access to tools for:
-- Reading and editing files
-- Running shell commands
-- Searching codebases
-- Getting current date/time
-
-Example curl request:
-```bash
-curl -X POST http://localhost:8080/api/agent/chat/simple \
-  -H "Content-Type: application/json" \
-  -d '{"message": "Help me create a new Java class"}'
-```
-
 ## Skills
 
 The application includes a skills system in the `skills/` directory:
@@ -89,26 +59,3 @@ The application includes a skills system in the `skills/` directory:
 ## Configuration
 
 Configuration can be modified in `src/main/resources/application.properties`.
-
-## Testing
-
-Run tests with:
-```bash
-mvn test
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Author
-
-babuasingh
