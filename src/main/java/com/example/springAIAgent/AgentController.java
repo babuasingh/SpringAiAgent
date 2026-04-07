@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @RestController
 @RequestMapping("/api/agent")
 @CrossOrigin(origins = "*")
+// this class was created by the AI agent when asked to create a Rest controller
 public class AgentController {
 
     private final ChatClient.Builder chatClientBuilder;
